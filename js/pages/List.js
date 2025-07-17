@@ -129,6 +129,9 @@ export default {
                       <p>
                         Levels must be finished in a decent quality.
                     </p>
+                    <p>
+                        <b>Noclip accuracy is allowed only if you have 0 death and 100% accuracy. </b> But you will have to show your mod menu for atleast a second 
+                    </p>
                 </div>
             </div>
         </main>
