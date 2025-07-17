@@ -126,6 +126,9 @@ export default {
                      <p>
                         If a level has a CBF blocker, you can delete the CBF blocker but you will need to send the ID with the original ID of that level.
                     </p>
+                      <p>
+                        Levels must be finished in a decent quality.
+                    </p>
                 </div>
             </div>
         </main>
