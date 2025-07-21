@@ -126,8 +126,8 @@ export default {
                      <p>
                         If a level has a CBF blocker, you can delete the CBF blocker but you will need to send the ID with the original ID of that level.
                     </p>
-                      <p>
-                        Levels must be finished in a decent quality.
+                     <p>
+                        Levels gameplay must be up to 30 seconds but levels can have ending screens that dont have any gameplay.
                     </p>
                     <p>
                         <b>Noclip accuracy is allowed only if you have 0 death and 100% accuracy. </b> But you will have to show your mod menu for atleast a second 
