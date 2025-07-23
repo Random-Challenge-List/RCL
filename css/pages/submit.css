@@ -1,4 +1,29 @@
-.page-list {
+:root {
+    --color-background: white;
+    --color-on-background: black;
+    --color-background-hover: #eee;
+    --color-on-background-hover: black;
+    --color-primary: #590c0c;
+    --color-on-primary: white;
+    --color-error: #de0000;
+    --color-on-error: white;
+}
+
+main.dark,
+header.dark {
+    color-scheme: dark;
+    --color-background: #1c1b1f;
+    --color-on-background: white;
+    --color-background-hover: #27262c;
+    --color-on-background-hover: white;
+    --color-primary: #400808;
+    --color-primary-disabled: #1f213c;
+    --color-on-primary: white;
+    --color-error: #de0000;
+    --color-on-error: white;
+}
+
+.page-submit {
   max-width: 600px;
   margin: 3rem auto;
   padding: 2.5rem 3rem;
@@ -10,13 +35,13 @@
   text-align: center;
 }
 
-.page-list h1 {
+.page-submit h1 {
   margin-bottom: 2rem;
   font-weight: 700;
   font-size: 2rem;
 }
 
-.page-list form label {
+.page-submit form label {
   display: block;
   text-align: left;
   margin: 1rem 0 0.5rem;
@@ -24,9 +49,9 @@
   font-size: 1rem;
 }
 
-.page-list form input,
-.page-list form select,
-.page-list form textarea {
+.page-submit form input,
+.page-submit form select,
+.page-submit form textarea {
   width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
@@ -38,15 +63,14 @@
   color: var(--color-on-background);
 }
 
-.page-list form input:focus,
-.page-list form select:focus,
-.page-list form textarea:focus {
+.page-submit form input:focus,
+.page-submit form select:focus,
+.page-submit form textarea:focus {
   border-color: var(--color-primary);
   outline: none;
 }
 
-/* Przycisk Submit na czerwono */
-.page-list button {
+.page-submit button {
   margin-top: 1.75rem;
   padding: 0.85rem 2.5rem;
   font-size: 1.15rem;
@@ -59,11 +83,11 @@
   transition: background-color 0.3s ease;
 }
 
-.page-list button:hover {
+.page-submit button:hover {
   background-color: #a70000;
 }
 
-.page-list p {
+.page-submit p {
   margin-top: 1.5rem;
   font-weight: 600;
   color: var(--color-on-background);
