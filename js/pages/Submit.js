@@ -1,3 +1,77 @@
+<template>
+  <div class="page-submit">
+    <h1>Submit Record</h1>
+    <label>
+      Mode:
+      <select v-model="mode" style="margin-left: 0.5rem;">
+        <option value="verification">Verification</option>
+        <option value="submission">Submission</option>
+      </select>
+    </label>
+
+    <form @submit.prevent="sendData" style="margin-top: 1rem; text-align: left;">
+      <div v-if="mode === 'verification'">
+        <label>
+          Player Name:
+          <input v-model="player" required />
+        </label>
+
+        <label>
+          Creator Name:
+          <input v-model="creatorName" required />
+        </label>
+
+        <label>
+          Level ID:
+          <input v-model="levelId" required />
+        </label>
+
+        <label>
+          Video Link:
+          <input v-model="video" type="url" required />
+        </label>
+
+        <label>
+          Raw Video Link:
+          <input v-model="rawVideo" type="url" required />
+        </label>
+      </div>
+
+      <div v-else>
+        <label>
+          Player Name:
+          <input v-model="player" required />
+        </label>
+
+        <label>
+          Select Level:
+          <select v-model="selectedLevelId" required>
+            <option disabled value="">-- Select a Level --</option>
+            <option v-for="lvl in levels" :key="lvl.id" :value="lvl.id">
+              {{ lvl.name || lvl.id }}
+            </option>
+          </select>
+        </label>
+
+        <label>
+          Video Link:
+          <input v-model="video" type="url" required />
+        </label>
+
+        <label>
+          Raw Video Link:
+          <input v-model="rawVideo" type="url" required />
+        </label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p style="margin-top: 1rem; text-align: center;">{{ status }}</p>
+  </div>
+</template>
+
+<script>
 export default {
   name: 'Submit',
   data() {
@@ -15,6 +89,7 @@ export default {
   },
   watch: {
     selectedLevelId(newId) {
+      console.log('Selected level ID:', newId);
       const lvl = this.levels.find(l => l.id === newId);
       if (lvl) {
         this.levelId = lvl.id;
@@ -29,6 +104,7 @@ export default {
     try {
       const res = await fetch('/data/_list.json');
       this.levels = await res.json();
+      console.log("Loaded levels:", this.levels);
     } catch (e) {
       console.error('Failed to load levels list:', e);
       this.levels = [];
@@ -49,6 +125,7 @@ export default {
         data.video = this.video;
         data.rawVideo = this.rawVideo;
       }
+
       try {
         const res = await fetch('https://rclwebhook.nixkwasthere.workers.dev', {
           method: 'POST',
@@ -57,80 +134,10 @@ export default {
         });
         this.status = res.ok ? '✅ Submitted successfully!' : '❌ Submission failed!';
       } catch (e) {
+        console.error('Error sending data:', e);
         this.status = '❌ Submission failed (network error)!';
       }
     }
-  },
-  template: `
-    <div class="page-submit">
-      <h1>Submit Record</h1>
-      <label>
-        Mode:
-        <select v-model="mode" style="margin-left: 0.5rem;">
-          <option value="verification">Verification</option>
-          <option value="submission">Submission</option>
-        </select>
-      </label>
-
-      <form @submit.prevent="sendData" style="margin-top: 1rem; text-align: left;">
-        <div v-if="mode === 'verification'">
-          <label>
-            Player Name:
-            <input v-model="player" required />
-          </label>
-
-          <label>
-            Creator Name:
-            <input v-model="creatorName" required />
-          </label>
-
-          <label>
-            Level ID:
-            <input v-model="levelId" required />
-          </label>
-
-          <label>
-            Video Link:
-            <input v-model="video" type="url" required />
-          </label>
-
-          <label>
-            Raw Video Link:
-            <input v-model="rawVideo" type="url" required />
-          </label>
-        </div>
-
-        <div v-else>
-          <label>
-            Player Name:
-            <input v-model="player" required />
-          </label>
-
-          <label>
-            Select Level:
-            <select v-model="selectedLevelId" required>
-              <option disabled value="">-- Select a Level --</option>
-              <option v-for="lvl in levels" :key="lvl.id" :value="lvl.id">
-                {{ lvl.name }}
-              </option>
-            </select>
-          </label>
-
-          <label>
-            Video Link:
-            <input v-model="video" type="url" required />
-          </label>
-
-          <label>
-            Raw Video Link:
-            <input v-model="rawVideo" type="url" required />
-          </label>
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-
-      <p style="margin-top: 1rem; text-align: center;">{{ status }}</p>
-    </div>
-  `
+  }
 };
+</script>
