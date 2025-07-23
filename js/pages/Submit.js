@@ -5,25 +5,11 @@ export default {
       mode: 'verification',
       player: '',
       creatorName: '',
-      levels: [],
-      selectedLevelId: '',
+      levelId: '',
       video: '',
       rawVideo: '',
       status: '',
     };
-  },
-  async mounted() {
-    try {
-      const res = await fetch('/data/_list.json');
-      this.levels = await res.json();
-      if (this.levels.length) {
-        this.selectedLevelId = this.levels[0].id || '';
-      }
-      console.log("Loaded levels:", this.levels);
-    } catch (e) {
-      console.error('Failed to load levels list:', e);
-      this.levels = [];
-    }
   },
   methods: {
     async sendData() {
@@ -31,12 +17,12 @@ export default {
       if (this.mode === 'verification') {
         data.player = this.player;
         data.creatorName = this.creatorName;
-        data.levelId = this.selectedLevelId;
+        data.levelId = this.levelId;
         data.video = this.video;
         data.rawVideo = this.rawVideo;
       } else {
         data.player = this.player;
-        data.levelId = this.selectedLevelId;
+        data.levelId = this.levelId;
         data.video = this.video;
         data.rawVideo = this.rawVideo;
       }
@@ -78,13 +64,8 @@ export default {
         </label>
 
         <label>
-          Level:
-          <select v-model="selectedLevelId" required>
-            <option disabled value="">-- select level --</option>
-            <option v-for="level in levels" :key="level.id" :value="level.id">
-              {{ level.name }}
-            </option>
-          </select>
+          Level ID:
+          <input v-model="levelId" required />
         </label>
 
         <label>
