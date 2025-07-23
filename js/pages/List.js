@@ -22,8 +22,15 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <table class="list" v-if="list">
-                    <tr v-for="([level, err], i) in list">
+                <input
+                    v-model="searchQuery"
+                    type="text"
+                    class="search-input"
+                    placeholder="Search levels..."
+                    style="width: 100%; margin-bottom: 1rem; padding: 0.5rem; font-size: 1rem;"
+                />
+                <table class="list" v-if="filteredList.length">
+                    <tr v-for="([level, err], i) in filteredList" :key="level?.id || i">
                         <td class="rank">
                             <p v-if="i + 1 <= 150" class="type-label-lg">#{{ i + 1 }}</p>
                             <p v-else class="type-label-lg">Legacy</p>
@@ -35,6 +42,7 @@ export default {
                         </td>
                     </tr>
                 </table>
+                <p v-else>No levels match your search.</p>
             </div>
             <div class="level-container">
                 <div class="level" v-if="level">
@@ -57,10 +65,10 @@ export default {
                     </ul>
                     <h2>Records</h2>
                     <p v-if="selected + 1 <= 75"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
-                    <p v-else-if="selected +1 <= 150"><strong>100%</strong> or better to qualify</p>
+                    <p v-else-if="selected + 1 <= 150"><strong>100%</strong> or better to qualify</p>
                     <p v-else>This level does not accept new records.</p>
                     <table class="records">
-                        <tr v-for="record in level.records" class="record">
+                        <tr v-for="record in level.records" class="record" :key="record.user + record.percent">
                             <td class="percent">
                                 <p>{{ record.percent }}%</p>
                             </td>
@@ -83,7 +91,7 @@ export default {
             <div class="meta-container">
                 <div class="meta">
                     <div class="errors" v-show="errors.length > 0">
-                        <p class="error" v-for="error of errors">{{ error }}</p>
+                        <p class="error" v-for="error of errors" :key="error">{{ error }}</p>
                     </div>
                     <div class="og">
                         <p class="type-label-md">Website layout made by <a href="https://tsl.pages.dev/" target="_blank">TheShittyList</a></p>
@@ -91,7 +99,7 @@ export default {
                     <template v-if="editors">
                         <h3>List Editors</h3>
                         <ol class="editors">
-                            <li v-for="editor in editors">
+                            <li v-for="editor in editors" :key="editor.name">
                                 <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
                                 <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
                                 <p v-else>{{ editor.name }}</p>
@@ -134,15 +142,16 @@ export default {
         selected: 0,
         errors: [],
         roleIconMap,
-        store
+        store,
+        searchQuery: "",
     }),
     computed: {
         level() {
-            return this.list[this.selected][0];
+            return this.filteredList[this.selected]?.[0];
         },
         video() {
-            if (!this.level.showcase) {
-                return embed(this.level.verification);
+            if (!this.level?.showcase) {
+                return embed(this.level?.verification);
             }
 
             return embed(
@@ -151,24 +160,23 @@ export default {
                     : this.level.verification
             );
         },
+        filteredList() {
+            if (!this.searchQuery.trim()) return this.list;
+            const q = this.searchQuery.trim().toLowerCase();
+            return this.list.filter(([level]) => level?.name?.toLowerCase().includes(q));
+        }
     },
     async mounted() {
-        // Hide loading spinner
         this.list = await fetchList();
         this.editors = await fetchEditors();
 
-        // Error handling
         if (!this.list) {
-            this.errors = [
-                "Failed to load list. Retry in a few minutes or notify list staff.",
-            ];
+            this.errors = ["Failed to load list. Retry in a few minutes or notify list staff."];
         } else {
             this.errors.push(
                 ...this.list
                     .filter(([_, err]) => err)
-                    .map(([_, err]) => {
-                        return `Failed to load level. (${err}.json)`;
-                    })
+                    .map(([_, err]) => `Failed to load level. (${err}.json)`)
             );
             if (!this.editors) {
                 this.errors.push("Failed to load list editors.");
