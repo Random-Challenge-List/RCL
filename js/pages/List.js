@@ -22,8 +22,14 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
-                <table class="list" v-if="list">
-                    <tr v-for="([level, err], i) in list">
+                <input
+                    v-model="searchQuery"
+                    type="text"
+                    class="search-input"
+                    placeholder="Search levels..."
+                />
+                <table class="list" v-if="filteredList.length">
+                    <tr v-for="([level, err], i) in filteredList">
                         <td class="rank">
                             <p v-if="i + 1 <= 50" class="type-label-lg">#{{ i + 1 }}</p>
                             <p v-else class="type-label-lg">Legacy</p>
@@ -35,6 +41,7 @@ export default {
                         </td>
                     </tr>
                 </table>
+                <p v-else>No levels match your search.</p>
             </div>
             <div class="level-container">
                 <div class="level" v-if="level">
@@ -57,7 +64,7 @@ export default {
                     </ul>
                     <h2>Records</h2>
                     <p v-if="selected + 1 <= 75"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
-                    <p v-else-if="selected +1 <= 150"><strong>100%</strong> or better to qualify</p>
+                    <p v-else-if="selected + 1 <= 150"><strong>100%</strong> or better to qualify</p>
                     <p v-else>This level does not accept new records.</p>
                     <table class="records">
                         <tr v-for="record in level.records" class="record">
@@ -99,39 +106,17 @@ export default {
                         </ol>
                     </template>
                     <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, CBF is allowed.)
-                    </p>
-                    <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
-                    </p>
-                    <p>
-                        The recording must also show the player hit the endwall, or the completion will be invalidated.
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes
-                    </p>
-                    <p>
-                        Do not use easy modes, only a record of the unmodified level qualifies
-                    </p>
-                    <p>
-                        Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level
-                    </p>
-                     <p>
-                        If a level has a CBF blocker, you can delete the CBF blocker but you will need to send the ID with the original ID of that level.
-                    </p>
-                     <p>
-                        Levels gameplay must be up to 30 seconds but levels can have ending screens that dont have any gameplay.
-                    </p>
-                    <p>
-                        <b>Noclip accuracy is allowed only if you have 0 death and 100% accuracy. </b> But you will have to show your mod menu for atleast a second 
-                    </p>
+                    <p>Achieved the record without using hacks (however, CBF is allowed.)</p>
+                    <p>Achieved the record on the level that is listed on the site - please check the level ID before you submit a record</p>
+                    <p>Have either source audio or clicks/taps in the video. Edited audio only does not count</p>
+                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this</p>
+                    <p>The recording must also show the player hit the endwall, or the completion will be invalidated.</p>
+                    <p>Do not use secret routes or bug routes</p>
+                    <p>Do not use easy modes, only a record of the unmodified level qualifies</p>
+                    <p>Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level</p>
+                    <p>If a level has a CBF blocker, you can delete the CBF blocker but you will need to send the ID with the original ID of that level.</p>
+                    <p>Levels gameplay must be up to 30 seconds but levels can have ending screens that dont have any gameplay.</p>
+                    <p><b>Noclip accuracy is allowed only if you have 0 death and 100% accuracy. </b> But you will have to show your mod menu for at least a second </p>
                 </div>
             </div>
         </main>
@@ -143,15 +128,16 @@ export default {
         selected: 0,
         errors: [],
         roleIconMap,
-        store
+        store,
+        searchQuery: "",
     }),
     computed: {
         level() {
-            return this.list[this.selected][0];
+            return this.filteredList[this.selected]?.[0];
         },
         video() {
-            if (!this.level.showcase) {
-                return embed(this.level.verification);
+            if (!this.level?.showcase) {
+                return embed(this.level?.verification);
             }
 
             return embed(
@@ -160,24 +146,23 @@ export default {
                     : this.level.verification
             );
         },
+        filteredList() {
+            if (!this.searchQuery.trim()) return this.list;
+            const query = this.searchQuery.trim().toLowerCase();
+            return this.list.filter(([level]) => level?.name?.toLowerCase().includes(query));
+        },
     },
     async mounted() {
-        // Hide loading spinner
         this.list = await fetchList();
         this.editors = await fetchEditors();
 
-        // Error handling
         if (!this.list) {
-            this.errors = [
-                "Failed to load list. Retry in a few minutes or notify list staff.",
-            ];
+            this.errors = ["Failed to load list. Retry in a few minutes or notify list staff."];
         } else {
             this.errors.push(
                 ...this.list
                     .filter(([_, err]) => err)
-                    .map(([_, err]) => {
-                        return `Failed to load level. (${err}.json)`;
-                    })
+                    .map(([_, err]) => `Failed to load level. (${err}.json)`)
             );
             if (!this.editors) {
                 this.errors.push("Failed to load list editors.");
