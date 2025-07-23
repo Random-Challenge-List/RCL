@@ -10,12 +10,10 @@ export default {
       rawVideo: '',
       levels: [],
       selectedLevelId: '',
-
       status: '',
     };
   },
   watch: {
-
     selectedLevelId(newId) {
       const lvl = this.levels.find(l => l.id === newId);
       if (lvl) {
@@ -39,7 +37,6 @@ export default {
   methods: {
     async sendData() {
       let data = { type: this.mode };
-
       if (this.mode === 'verification') {
         data.player = this.player;
         data.creatorName = this.creatorName;
@@ -52,14 +49,12 @@ export default {
         data.video = this.video;
         data.rawVideo = this.rawVideo;
       }
-
       try {
         const res = await fetch('https://rclwebhook.nixkwasthere.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         });
-
         this.status = res.ok ? '✅ Submitted successfully!' : '❌ Submission failed!';
       } catch (e) {
         this.status = '❌ Submission failed (network error)!';
@@ -67,7 +62,7 @@ export default {
     }
   },
   template: `
-    <div>
+    <div class="page-list">
       <h1>Submit Record</h1>
       <label>
         Mode:
