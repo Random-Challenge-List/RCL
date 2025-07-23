@@ -14,18 +14,18 @@
       <table class="list" v-if="list">
         <tr
           v-for="([level, err], i) in list"
-          v-show="matchesSearch(level)"
           :key="i"
+          v-show="matchesSearch(level)"
         >
           <td class="rank">
-            <p v-if="i + 1 <= 150" class="type-label-lg">#{{ i + 1 }}</p>
+            <p v-if="getRank(i) <= 150" class="type-label-lg">#{{ getRank(i) }}</p>
             <p v-else class="type-label-lg">Legacy</p>
           </td>
           <td class="level" :class="{ active: selected === i, error: !level }">
             <button @click="selected = i">
-              <span class="type-label-lg">{{
-                level?.name || `Error (${err}.json)`
-              }}</span>
+              <span class="type-label-lg">
+                {{ level?.name || `Error (${err}.json)` }}
+              </span>
             </button>
           </td>
         </tr>
@@ -49,7 +49,7 @@
         <ul class="stats">
           <li>
             <div class="type-title-sm">Points when completed</div>
-            <p>{{ score(selected + 1, 100, level.percentToQualify) }}</p>
+            <p>{{ score(getRank(selected), 100, level.percentToQualify) }}</p>
           </li>
           <li>
             <div class="type-title-sm">ID</div>
@@ -61,10 +61,10 @@
           </li>
         </ul>
         <h2>Records</h2>
-        <p v-if="selected + 1 <= 75">
+        <p v-if="getRank(selected) <= 75">
           <strong>{{ level.percentToQualify }}%</strong> or better to qualify
         </p>
-        <p v-else-if="selected + 1 <= 150">
+        <p v-else-if="getRank(selected) <= 150">
           <strong>100%</strong> or better to qualify
         </p>
         <p v-else>This level does not accept new records.</p>
@@ -72,12 +72,9 @@
           <tr v-for="record in level.records" class="record">
             <td class="percent"><p>{{ record.percent }}%</p></td>
             <td class="user">
-              <a
-                :href="record.link"
-                target="_blank"
-                class="type-label-lg"
-                >{{ record.user }}</a
-              >
+              <a :href="record.link" target="_blank" class="type-label-lg">
+                {{ record.user }}
+              </a>
             </td>
             <td class="mobile">
               <img
@@ -95,12 +92,9 @@
         class="level"
         style="height: 100%; justify-content: center; align-items: center;"
       >
-        <p>(ノಠ益ಠ)ノ彡┻━┻</p>
+        <p>(ノಠ_ಠ)ノ□━□</p>
       </div>
     </div>
-
-    <!-- meta-container and editors stay unchanged -->
-    <!-- ... -->
   </main>
 </template>
 
@@ -141,9 +135,7 @@ export default {
       if (!this.level) return "";
       if (!this.level.showcase) return embed(this.level.verification);
       return embed(
-        this.toggledShowcase
-          ? this.level.showcase
-          : this.level.verification
+        this.toggledShowcase ? this.level.showcase : this.level.verification
       );
     },
   },
@@ -158,6 +150,9 @@ export default {
     matchesSearch(level) {
       if (!level) return false;
       return level.name.toLowerCase().includes(this.search.toLowerCase());
+    },
+    getRank(index) {
+      return index + 1;
     },
   },
 };
