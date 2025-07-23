@@ -13,19 +13,6 @@ export default {
       status: '',
     };
   },
-  watch: {
-    selectedLevelId(newId) {
-      console.log('Selected level ID:', newId);
-      const lvl = this.levels.find(l => l.id === newId);
-      if (lvl) {
-        this.levelId = lvl.id;
-        this.creatorName = lvl.creatorName || '';
-      } else {
-        this.levelId = '';
-        this.creatorName = '';
-      }
-    }
-  },
   async mounted() {
     try {
       const res = await fetch('/data/_list.json');
@@ -47,10 +34,11 @@ export default {
         data.rawVideo = this.rawVideo;
       } else {
         data.player = this.player;
-        data.levelId = this.selectedLevelId;
+        data.levelId = this.levelId;
         data.video = this.video;
         data.rawVideo = this.rawVideo;
       }
+
       try {
         const res = await fetch('https://rclwebhook.nixkwasthere.workers.dev', {
           method: 'POST',
@@ -110,13 +98,8 @@ export default {
           </label>
 
           <label>
-            Select Level:
-            <select v-model="selectedLevelId" required>
-              <option disabled value="">-- Select a Level --</option>
-              <option v-for="lvl in levels" :key="lvl.id" :value="lvl.id">
-                {{ lvl.name || lvl.id }}
-              </option>
-            </select>
+            Level Name:
+            <input v-model="levelId" required />
           </label>
 
           <label>
