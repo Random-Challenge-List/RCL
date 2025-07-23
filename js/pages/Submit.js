@@ -72,4 +72,65 @@ export default {
         </select>
       </label>
 
-      <form @submit.prevent="sendData" style="margin-top
+      <form @submit.prevent="sendData" style="margin-top: 1rem; text-align: left;">
+        <div v-if="mode === 'verification'">
+          <label>
+            Player Name:
+            <input v-model="player" required />
+          </label>
+
+          <label>
+            Creator Name:
+            <input v-model="creatorName" required />
+          </label>
+
+          <label>
+            Level ID:
+            <input v-model="levelId" required />
+          </label>
+
+          <label>
+            Video Link:
+            <input v-model="video" type="url" required />
+          </label>
+
+          <label>
+            Raw Video Link:
+            <input v-model="rawVideo" type="url" required />
+          </label>
+        </div>
+
+        <div v-else>
+          <label>
+            Player Name:
+            <input v-model="player" required />
+          </label>
+
+          <label>
+            Select Level:
+            <select v-model="selectedLevelId" required>
+              <option disabled value="">-- Select a Level --</option>
+              <option v-for="lvl in levels" :key="lvl.id" :value="lvl.id">
+                {{ lvl.name }}
+              </option>
+            </select>
+          </label>
+
+          <label>
+            Video Link:
+            <input v-model="video" type="url" required />
+          </label>
+
+          <label>
+            Raw Video Link:
+            <input v-model="rawVideo" type="url" required />
+          </label>
+        </div>
+
+        <button type="submit" style="margin-top: 1rem;">Submit</button>
+      </form>
+
+      <p style="margin-top: 1rem; text-align: center;">{{ status }}</p>
+    </div>
+  `
+};
