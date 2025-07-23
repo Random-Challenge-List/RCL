@@ -64,7 +64,7 @@ export default {
         </label>
 
         <label>
-          Level ID:
+          {{ mode === 'submission' ? 'Level Name' : 'Level ID' }}:
           <input v-model="levelId" required />
         </label>
 
