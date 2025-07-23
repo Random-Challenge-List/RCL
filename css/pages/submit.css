@@ -35,12 +35,6 @@ header.dark {
   text-align: center;
 }
 
-.page-submit h1 {
-  margin-bottom: 2rem;
-  font-weight: 700;
-  font-size: 2rem;
-}
-
 .page-submit form label {
   display: block;
   text-align: left;
@@ -75,8 +69,8 @@ header.dark {
   padding: 0.85rem 2.5rem;
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-on-error);
-  background-color: var(--color-error);
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -84,7 +78,37 @@ header.dark {
 }
 
 .page-submit button:hover {
-  background-color: #a70000;
+  background-color: #5c0e0e;
+}
+
+/* Dark mode overrides */
+.page-submit.dark {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  box-shadow: none;
+}
+
+.page-submit.dark form input,
+.page-submit.dark form select,
+.page-submit.dark form textarea {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  border-color: #555;
+}
+
+.page-submit.dark form input:focus,
+.page-submit.dark form select:focus,
+.page-submit.dark form textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.page-submit.dark button {
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
+}
+
+.page-submit.dark button:hover {
+  background-color: #5c0e0e;
 }
 
 .page-submit p {
