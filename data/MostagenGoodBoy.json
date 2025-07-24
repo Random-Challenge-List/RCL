@@ -9,5 +9,11 @@
     "password": "Free to copy",
     "description": "a bit harder than 4 biggies but equally shit gp",
     "records": [
+               {
+            "user": "Mostagen",
+            "link": "https://youtu.be/tWItMAUZmIk",
+            "percent": 100,
+            "CBF": "No"
+        }
     ]
 }
