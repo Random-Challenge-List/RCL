@@ -5,9 +5,14 @@
         "link": "https://www.youtube.com/@NixkOff"
     },
     {
-        "role": "admin",
+        "role": "owner",
         "name": "Mostagen",
         "link": "https://www.youtube.com/@Mostagen"
+    },
+    {
+        "role": "admin",
+        "name": "-",
+        "link": ""
     },
     {
         "role": "helper",
