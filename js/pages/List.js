@@ -105,13 +105,10 @@ export default {
                     </template>
                     <h3>Submission Requirements</h3>
                     <p>
-                        Achieved the record without using hacks (however, FPS bypass is allowed, up to 360fps)
+                        Achieved the record without using hacks (however, CBF is allowed.)
                     </p>
                     <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count
+                        Have either source audio or clicks/taps in the video. Edited audio only does not count (Mods also don't count like Click sounds)
                     </p>
                     <p>
                         The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
@@ -123,10 +120,13 @@ export default {
                         Do not use secret routes or bug routes
                     </p>
                     <p>
-                        Do not use easy modes, only a record of the unmodified level qualifies
+                        <b>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels lenght but you have to do it without add it any GP
                     </p>
                     <p>
                         Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level
+                    </p>
+                    <p>
+                    If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</b>
                     </p>
                     <p>
                         <b>Raw is only required when level is verified or level is in the top 5</b>
