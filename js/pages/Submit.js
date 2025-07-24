@@ -8,16 +8,19 @@ export default {
       levelId: '',
       video: '',
       rawVideo: '',
+      cbf: false,
       status: '',
     };
   },
   methods: {
     async sendData() {
-      let data = { type: this.mode };
-
-      data.player = this.player;
-      data.levelId = this.levelId;
-      data.video = this.video;
+      let data = {
+        type: this.mode,
+        player: this.player,
+        levelId: this.levelId,
+        video: this.video,
+        cbf: this.cbf,
+      };
 
       if (this.mode === 'verification') {
         data.creatorName = this.creatorName;
@@ -35,7 +38,6 @@ export default {
         });
         this.status = res.ok ? '✅ Submitted successfully!' : '❌ Submission failed!';
       } catch (e) {
-        console.error('Submission error:', e);
         this.status = '❌ Submission failed (network error)!';
       }
     }
@@ -76,6 +78,11 @@ export default {
         <label>
           Raw Video Link:
           <input v-model="rawVideo" type="url" placeholder="Optional" />
+        </label>
+
+        <label style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+          <input type="checkbox" v-model="cbf" />
+          CBF
         </label>
 
         <button type="submit">Submit</button>
