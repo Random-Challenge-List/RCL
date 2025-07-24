@@ -1,12 +1,13 @@
 {
-    "id": 123082179,
-    "name": "Cyclic chromotopia",
-    "author": "NixkOff",
-    "creators": ["NixkOff"],
-    "verifier": "NixkOff",
-    "verification": "https://youtu.be/eQT2kDneL3g",
-    "percentToQualify": "36",
-    "password": "Free To Copy",
-    "records": [
-    ]
+  "id": 123082179,
+  "name": "Cyclic chromotopia",
+  "author": "NixkOff",
+  "creators": ["NixkOff"],
+  "verifier": "NixkOff",
+  "verification": "https://youtu.be/eQT2kDneL3g",
+  "percentToQualify": "36",
+  "password": "Free To Copy",
+  "description": "Sonic wave ripoff but with harder wave timings.",
+  "records": [
+  ]
 }
