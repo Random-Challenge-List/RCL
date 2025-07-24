@@ -14,16 +14,16 @@ export default {
   methods: {
     async sendData() {
       let data = { type: this.mode };
+
+      data.player = this.player;
+      data.levelId = this.levelId;
+      data.video = this.video;
+
       if (this.mode === 'verification') {
-        data.player = this.player;
         data.creatorName = this.creatorName;
-        data.levelId = this.levelId;
-        data.video = this.video;
-        data.rawVideo = this.rawVideo;
-      } else {
-        data.player = this.player;
-        data.levelId = this.levelId;
-        data.video = this.video;
+      }
+
+      if (this.rawVideo.trim()) {
         data.rawVideo = this.rawVideo;
       }
 
@@ -75,7 +75,7 @@ export default {
 
         <label>
           Raw Video Link:
-          <input v-model="rawVideo" type="url" required />
+          <input v-model="rawVideo" type="url" placeholder="Optional" />
         </label>
 
         <button type="submit">Submit</button>
