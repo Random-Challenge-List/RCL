@@ -47,6 +47,9 @@ export default {
             <div class="level-container">
                 <div class="level" v-if="level">
                     <h1>{{ level.name }}</h1>
+                    <p v-if="level.description" class="level-description">
+                        {{ level.description }}
+                    </p>
                     <LevelAuthors :author="level.author" :creators="level.creators" :verifier="level.verifier"></LevelAuthors>
                     <iframe class="video" id="videoframe" :src="video" frameborder="0"></iframe>
                     <ul class="stats">
@@ -104,33 +107,15 @@ export default {
                         </ol>
                     </template>
                     <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, CBF is allowed.)
-                    </p>
-                    <p>
-                        Have either source audio or clicks/taps in the video. Edited audio only does not count (Mods also don't count like Click sounds)
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this
-                    </p>
-                    <p>
-                        The recording must also show the player hit the endwall, or the completion will be invalidated.
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes
-                    </p>
-                    <p>
-                        <b>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels lenght but you have to do it without add it any GP
-                    </p>
-                    <p>
-                        Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level
-                    </p>
-                    <p>
-                    If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</b>
-                    </p>
-                    <p>
-                        <b>Raw is only required when level is verified or level is in the top 5</b>
-                    </p>
+                    <p>Achieved the record without using hacks (however, CBF is allowed.)</p>
+                    <p>Have either source audio or clicks/taps in the video. Edited audio only does not count (Mods also don't count like Click sounds)</p>
+                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this</p>
+                    <p>The recording must also show the player hit the endwall, or the completion will be invalidated.</p>
+                    <p>Do not use secret routes or bug routes</p>
+                    <p><b>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels length but you have to do it without add it any GP</p>
+                    <p>Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level</p>
+                    <p>If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</b></p>
+                    <p><b>Raw is only required when level is verified or level is in the top 5</b></p>
                 </div>
             </div>
         </main>
@@ -153,7 +138,6 @@ export default {
             if (!this.level?.showcase) {
                 return embed(this.level?.verification);
             }
-
             return embed(
                 this.toggledShowcase
                     ? this.level.showcase
