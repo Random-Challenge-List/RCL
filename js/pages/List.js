@@ -107,15 +107,19 @@ export default {
                         </ol>
                     </template>
                     <h3>Submission Requirements</h3>
-                    <p>Achieved the record without using hacks (however, CBF is allowed.)</p>
+                    <h2>General</h2>
+                    <p>Achieved the record without using hacks.</p>
+                    <p>CBF is allowed but you have to check that you used it during completion.</p>
                     <p>Have either source audio or clicks/taps in the video. Edited audio only does not count (Mods also don't count like Click sounds)</p>
-                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt. Everyplay records are exempt from this</p>
+                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt.</p>
                     <p>The recording must also show the player hit the endwall, or the completion will be invalidated.</p>
-                    <p>Do not use secret routes or bug routes</p>
-                    <p><b>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels length but you have to do it without add it any GP</p>
                     <p>Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level</p>
-                    <p>If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</b></p>
-                    <p><b>Raw is only required when level is verified or level is in the top 5</b></p>
+                    <p>Raw is only required when level is verified or level is in the Top 5</p>
+                    <h2>Levels</h2>
+                    <p>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels length but you have to do it without add it any GP</p>
+                    <p>Levels made out of other levels will be automaticlly be removed (Levels before this change will not be removed)</p>
+                    <p>Levels must be finished in a "playable" state. (Invisible memory levels will be rejected, but levels before this change will not be removed)</p>
+                    <p>If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</p>
                 </div>
             </div>
         </main>
