@@ -115,6 +115,7 @@ export default {
                     <p>The recording must also show the player hit the endwall, or the completion will be invalidated.</p>
                     <p>Once a level falls onto the Legacy List, we accept records for it for 24 hours after it falls off, then afterwards we never accept records for said level</p>
                     <p>Raw is only required when level is verified or level is in the Top 5</p>
+                    <p>You can submit while using Noclip, <b>Only if your accuracy is 100% and you have 0 deaths.</b> If you actually pull it off you'll have to press your mod menu Hotkey so the mods can check if you are using only noclip or something else.</p>
                     <h2>Levels</h2>
                     <p>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels length but you have to do it without add it any GP</p>
                     <p>Levels made out of other levels will be automaticlly be removed (Levels before this change will not be removed)</p>
