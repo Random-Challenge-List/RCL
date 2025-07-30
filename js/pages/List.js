@@ -120,6 +120,7 @@ export default {
                     <p>Levels made out of other levels will be automaticlly be removed (Levels before this change will not be removed)</p>
                     <p>Levels must be finished in a "playable" state. (Invisible memory levels will be rejected, but levels before this change will not be removed)</p>
                     <p>If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</p>
+                    <p>You can use swag routes or secret ways <b>But only if completed level with swag route/secret way is below Top 5</b></p>
                 </div>
             </div>
         </main>
