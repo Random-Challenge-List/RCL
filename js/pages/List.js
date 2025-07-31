@@ -117,7 +117,7 @@ export default {
                     <p>Raw is only required when level is verified or level is in the Top 5</p>
                     <p>You can submit while using Noclip, <b>Only if your accuracy is 100% and you have 0 deaths.</b> If you actually pull it off you'll have to press your mod menu Hotkey so the mods can check if you are using only noclip or something else.</p>
                     <h2>Levels</h2>
-                    <p>Levels gameplay must be under 31 seconds</b> but you can add end screens that extends levels length but you have to do it without add it any GP</p>
+                    <p>Levels gameplay must be under 60 seconds</b> but you can add end screens that extends levels length but you have to do it without add it any GP</p>
                     <p>Levels made out of other levels will be automaticlly be removed (Levels before this change will not be removed)</p>
                     <p>Levels must be finished in a "playable" state. (Invisible memory levels will be rejected, but levels before this change will not be removed)</p>
                     <p>If a level has a CBF blocker you can delete it and your record will be accepted <b>But you will have to put into description ID of the level without CBF blocker</p>
