@@ -1,0 +1,32 @@
+[
+    {
+        "role": "owner",
+        "name": "NixkOff",
+        "link": "https://www.youtube.com/@NixkOff"
+    },
+    {
+        "role": "owner",
+        "name": "Mostagen",
+        "link": "https://www.youtube.com/@Mostagen"
+    },
+    {
+        "role": "admin",
+        "name": "Majster",
+        "link": "https://www.youtube.com/@Majster_TT"
+    },
+    {
+        "role": "helper",
+        "name": "-",
+        "link": ""
+    },
+    {
+        "role": "trial",
+        "name": "-",
+        "link": ""
+    },
+    {
+        "role": "dev",
+        "name": "-",
+        "link": ""
+    }
+]
