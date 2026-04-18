@@ -8,5 +8,11 @@
     "percentToQualify": "100",
     "password": "Free To Copy",
     "records": [
+        {
+            "user": "Mostagen",
+            "link": "https://youtu.be/lk9Vh_cHtQQ?si=MxwopMyY0MT567wL",
+            "percent": 100,
+            "hz": 240
+        }
     ]
 }
