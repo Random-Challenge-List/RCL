@@ -108,9 +108,6 @@ export default {
                         Clicks should be included in verification
                     </p>
                     <p>
-                        Do not use secret ways, swag routes are okay
-                    </p>
-                    <p>
                         Stop reading and go submit ur challenge B))
                     </p>
                 </div>
