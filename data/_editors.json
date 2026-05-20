@@ -15,6 +15,11 @@
         "link": "https://www.youtube.com/@Majster_TT"
     },
     {
+        "role": "admin",
+        "name": "mixer",
+        "link": "https://www.youtube.com/channel/UC1jnWVoZVZT1KJm3RlKnu-A"
+    },
+    {
         "role": "helper",
         "name": "-",
         "link": ""
